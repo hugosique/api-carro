@@ -47,5 +47,33 @@ module.exports = {
         };
 
         res.json(json);
+    },
+
+    updateCar: async (req, res) => {
+        let json = {error: '', result:{}};
+
+        let codigo = req.params.id;
+        let modelo = req.body.modelo;
+        let placa = req.body.placa;
+
+        if(modelo && placa && codigo) {
+            await carService.updateCar(codigo, modelo, placa);
+            json.result = {
+                codigo,
+                modelo,
+                placa,
+            };
+        } else {
+            json.error = 'Campos não enviados';
+        };
+
+        res.json(json);
+    },
+
+    deleteCar: async(req, res) => {
+        let json = {error: '', result:{}};
+
+        await carService.deleteCar(req.params.id);
+        res.json(json);
     }
 };
