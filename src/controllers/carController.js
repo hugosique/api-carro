@@ -9,7 +9,8 @@ module.exports = {
         for(let i in car) {
             json.result.push({
                 codigo: car[i].codigo,
-                descricao: car[i].modelo
+                descricao: car[i].modelo,
+                placa: car[i].placa
             });
         }
         res.json(json);
